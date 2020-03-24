@@ -1,0 +1,41 @@
+function mouse_limit(){
+  if (player_x<0){
+    player_x=0;
+  } else if (player_x>9){
+    player_x=9;
+  }
+  if (player_y<0){
+    player_y=0;
+  } else if (player_y>11){
+    player_y=11;
+  }
+}
+onEvent("Main","keypress",function(event){
+  if (event.key=="w"){
+    player_y=player_y-1;
+    mouse_limit();
+    moveTo(player_posx[player_x],player_posy[player_y]);
+    turnTo(0);
+  } else {
+    if (event.key=="s"){
+      player_y++;
+      mouse_limit();
+      moveTo(player_posx[player_x],player_posy[player_y]);
+      turnTo(180);
+    } else {
+      if (event.key=="d"){
+        player_x++;
+        mouse_limit();
+        moveTo(player_posx[player_x],player_posy[player_y]);
+        turnTo(90);
+      } else {
+        if (event.key=="a"){
+          player_x=player_x-1;
+          mouse_limit();
+          moveTo(player_posx[player_x],player_posy[player_y]);
+          turnTo(270);
+        }
+      }
+    }
+  }
+});
